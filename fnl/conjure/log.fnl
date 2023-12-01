@@ -1,3 +1,5 @@
+(import-macros {: module : def : defn : defonce : def- : defn- : defonce- : wrap-last-expr : wrap-module-body : deftest} :nfnl.macros.aniseed)
+
 (module conjure.log
   {autoload {a conjure.aniseed.core
              nvim conjure.aniseed.nvim
@@ -497,3 +499,5 @@
 
 (defn reset-hard []
   (nvim.ex.bwipeout_ (upsert-buf)))
+
+*module*

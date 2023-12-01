@@ -1,3 +1,5 @@
+(import-macros {: module : def : defn : defonce : def- : defn- : defonce- : wrap-last-expr : wrap-module-body : deftest} :nfnl.macros.aniseed)
+
 (module conjure.client.guile.socket
   {autoload {a conjure.aniseed.core
              str conjure.aniseed.string
@@ -163,3 +165,5 @@
     :GuileDisconnect (cfg [:mapping :disconnect])
     disconnect
     {:desc "Disconnect from the REPL"}))
+
+*module*

@@ -1,16 +1,16 @@
-local _2afile_2a = "fnl/conjure/fs.fnl"
+-- [nfnl] Compiled from fnl/conjure/fs.fnl by https://github.com/Olical/nfnl, do not edit.
 local _2amodule_name_2a = "conjure.fs"
 local _2amodule_2a
 do
-  package.loaded[_2amodule_name_2a] = {}
-  _2amodule_2a = package.loaded[_2amodule_name_2a]
+  _G.package.loaded[_2amodule_name_2a] = {}
+  _2amodule_2a = _G.package.loaded[_2amodule_name_2a]
 end
 local _2amodule_locals_2a
 do
   _2amodule_2a["aniseed/locals"] = {}
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
-local autoload = (require("conjure.aniseed.autoload")).autoload
+local autoload = (require("aniseed.autoload")).autoload
 local a, afs, config, nvim, str, text = autoload("conjure.aniseed.core"), autoload("conjure.aniseed.fs"), autoload("conjure.config"), autoload("conjure.aniseed.nvim"), autoload("conjure.aniseed.string"), autoload("conjure.text")
 do end (_2amodule_locals_2a)["a"] = a
 _2amodule_locals_2a["afs"] = afs
@@ -18,6 +18,7 @@ _2amodule_locals_2a["config"] = config
 _2amodule_locals_2a["nvim"] = nvim
 _2amodule_locals_2a["str"] = str
 _2amodule_locals_2a["text"] = text
+do local _ = {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil} end
 local function env(k)
   local v = nvim.fn.getenv(k)
   if (a["string?"](v) and not a["empty?"](v)) then
@@ -27,10 +28,12 @@ local function env(k)
   end
 end
 _2amodule_locals_2a["env"] = env
+do local _ = {env, nil} end
 local function config_dir()
   return ((env("XDG_CONFIG_HOME") or (env("HOME") .. afs["path-sep"] .. ".config")) .. afs["path-sep"] .. "conjure")
 end
 _2amodule_2a["config-dir"] = config_dir
+do local _ = {config_dir, nil} end
 local function findfile(name, path)
   local res = nvim.fn.findfile(name, path)
   if not a["empty?"](res) then
@@ -40,6 +43,7 @@ local function findfile(name, path)
   end
 end
 _2amodule_2a["findfile"] = findfile
+do local _ = {findfile, nil} end
 local function split_path(path)
   local function _3_(_241)
     return not a["empty?"](_241)
@@ -47,10 +51,12 @@ local function split_path(path)
   return a.filter(_3_, str.split(path, afs["path-sep"]))
 end
 _2amodule_2a["split-path"] = split_path
+do local _ = {split_path, nil} end
 local function join_path(parts)
   return str.join(afs["path-sep"], a.concat(parts))
 end
 _2amodule_2a["join-path"] = join_path
+do local _ = {join_path, nil} end
 local function parent_dir(path)
   local res = join_path(a.butlast(split_path(path)))
   if ("" == res) then
@@ -60,6 +66,7 @@ local function parent_dir(path)
   end
 end
 _2amodule_2a["parent-dir"] = parent_dir
+do local _ = {parent_dir, nil} end
 local function upwards_file_search(file_names, from_dir)
   if (from_dir and not a["empty?"](file_names)) then
     local result
@@ -77,14 +84,17 @@ local function upwards_file_search(file_names, from_dir)
   end
 end
 _2amodule_2a["upwards-file-search"] = upwards_file_search
+do local _ = {upwards_file_search, nil} end
 local function resolve_above(names)
   return (upwards_file_search(names, nvim.fn.expand("%:p:h")) or upwards_file_search(names, nvim.fn.getcwd()) or upwards_file_search(names, config_dir()))
 end
 _2amodule_2a["resolve-above"] = resolve_above
+do local _ = {resolve_above, nil} end
 local function file_readable_3f(path)
   return (1 == nvim.fn.filereadable(path))
 end
 _2amodule_2a["file-readable?"] = file_readable_3f
+do local _ = {file_readable_3f, nil} end
 local function resolve_relative_to(path, root)
   local function loop(parts)
     if a["empty?"](parts) then
@@ -100,6 +110,7 @@ local function resolve_relative_to(path, root)
   return loop(split_path(path))
 end
 _2amodule_2a["resolve-relative-to"] = resolve_relative_to
+do local _ = {resolve_relative_to, nil} end
 local function resolve_relative(path)
   local relative_file_root = config["get-in"]({"relative_file_root"})
   if relative_file_root then
@@ -109,6 +120,7 @@ local function resolve_relative(path)
   end
 end
 _2amodule_2a["resolve-relative"] = resolve_relative
+do local _ = {resolve_relative, nil} end
 local function apply_path_subs(path, path_subs)
   local function _13_(path0, _11_)
     local _arg_12_ = _11_
@@ -119,10 +131,12 @@ local function apply_path_subs(path, path_subs)
   return a.reduce(_13_, path, a["kv-pairs"](path_subs))
 end
 _2amodule_2a["apply-path-subs"] = apply_path_subs
+do local _ = {apply_path_subs, nil} end
 local function localise_path(path)
   return resolve_relative(apply_path_subs(path, config["get-in"]({"path_subs"})))
 end
 _2amodule_2a["localise-path"] = localise_path
+do local _ = {localise_path, nil} end
 local function file_path__3emodule_name(file_path)
   if file_path then
     local function _14_(mod_name)
@@ -139,4 +153,5 @@ local function file_path__3emodule_name(file_path)
   end
 end
 _2amodule_2a["file-path->module-name"] = file_path__3emodule_name
+do local _ = {file_path__3emodule_name, nil} end
 return _2amodule_2a
